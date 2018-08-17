@@ -14,8 +14,6 @@ const db = require('./db/db');
 const query = require('./db/query');
 const bcrypt = require('bcryptjs');
 
-require('dotenv').config({ path: 'variables.env' });
-
 var app = express();
 
 app.set('views',path.join(__dirname, 'views'));
