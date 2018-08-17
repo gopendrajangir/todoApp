@@ -1,0 +1,28 @@
+extends home
+
+block content 
+  
+  .container.m-1.bg-dark.p-0
+    .p-2
+      nav.navbar.navbar-expand-lg.navbar-dark.bg-dark
+          a.navbar-brand(href='#')
+            h3.logo-text.text-light My Todos
+          button.navbar-toggler(type='button', data-toggle='collapse', data-target='#navbarResponsive', aria-controls='navbarResponsive', aria-expanded='false', aria-label='Toggle navigation')
+            span.navbar-toggler-icon
+          #navbarResponsive.collapse.navbar-collapse
+            ul.navbar-nav.ml-auto.text-light
+              li.nav-item
+                a.nav-link(href='/myTodo/profile') Profile  
+              li.nav-item
+                a.nav-link(href='/myTodo/todos') Todos  
+              li.nav-item
+                a.nav-link(href='/myTodo/logout') Logout 
+          span.nav-item.rounded-circle.bg-light.pro-pic
+            img(src="/images/uploads/"+ profile.profileImage, alt="pro").profileImage.rounded-circle      
+      if(flash != "")
+        li.alert.alert-success #{flash} 
+    .container.bg-light.p-4
+      block todo
+
+        
+      

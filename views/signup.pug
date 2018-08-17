@@ -1,0 +1,37 @@
+extends home
+
+block content 
+  .login_container.m-5
+    div.bg-dark.pt-4.pl-4.pr-4.text-light.rounded.d-flex.justify-content-center.signup
+      div.w-100
+       h3.p-2.mb-4.text-light.border.d-flex.justify-content-center.border-light Signup
+       if(errors)
+         each error, i in errors 
+           li.alert.alert-danger #{error.msg}
+       if(flash)
+          li(class="alert alert-danger") #{flash}
+       form(method="post", action="/signup", enctype = 'multipart/form-data')
+        .form-group
+            span
+              label(for='username') Username
+              input#username.form-control(type='text', name="username", placeholder='Enter username', required)
+            span
+              label(for='email') Email
+              input#email.form-control(type='text', name="email", placeholder='Enter email', required)
+        .form-group
+          span
+            label(for='password') Password
+            input#password.form-control(type='password', name="password", placeholder='Password', required)
+          span
+            label(for='password2') Confirm Password
+            input#password2.form-control(type='password', name="password2", placeholder='Confirm password', required)
+        .form-group
+          label(for='pic') Profile Pic
+          input#pic.form-control(type="file", name="picture", placeholder="(optional)")
+        .form-group.d-flex.justify-content-center.mt-3
+          button.btn.btn-success.border.border-light(type='submit').w-100.m-1.mt-4 Sign Up
+          a(href="/auth/facebook")
+            input.btn.btn-dark.border.border-light.w-100.m-1.mt-4(type="button", value="Login With Facebook") 
+    div.d-flex.justify-content-center.m-2
+      p Already have an account &nbsp;
+      a(href="/login") Login

@@ -1,0 +1,14 @@
+extends myTodo
+
+block todo 
+  
+  .profile-container
+    h3.mt-2.mb-5.heading Profile
+    .profile
+       span.picCover
+         img(src="/images/uploads/"+ profile.profileImage , alt="pro").profileImage.rounded-circle
+       span.detail
+         h4 Username
+         | #{profile.username}
+         h4 <br> Email
+         | #{profile.email}

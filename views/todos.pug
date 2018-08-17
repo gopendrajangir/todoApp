@@ -1,0 +1,24 @@
+extends myTodo
+
+block todo 
+  .continer.todo-container
+    .newTodo.bg-info.p-3
+      h5.heading.mb-4.p-2.todoHeading.bg-dark.text-light Enter new Todo
+      form(method="post", action="/myTodo/todos/insertTodo")
+       .form-group
+         label(for='time') Date and Time
+         input#time.form-control(type='text', name="time", placeholder='Date and Time', required)
+       .form-group
+         label(for='todo') Todo
+         textarea#todo.form-control(type='text', rows="5", name="todo", placeholder='Write your todo', required)
+       .form-group.d-flex.justify-content-center.mt-3
+         button.btn.btn-success.border.border-light(type='submit').w-100.m-1 Done
+    .allTodos
+      if(todos)
+        ul.list-group
+          each todo, i in todos
+            
+            li.list-group-item.d-flex.justify-content-between.align-items-center
+               span.badge.badge-primary.badge-pill #{i+1}
+               | #{todo.data}
+               span.badge.badge-primary.badge-pill #{todo.dateTime} 
