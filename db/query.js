@@ -104,15 +104,28 @@ function getTodos(id, req, res) {
 
 module.exports.addFbUser = (data, req, res, user)=> {
   const connection = require('./db');
-  connection.query('INSERT INTO users (id, username, email, profileImage) VALUES ?', [data], (err, results, fields) => {
+  connection.query(`SELECT * FROM users WHERE id = "${data[0]}"`,(err, results, fields) => {
     if(err) {
       throw err;
     } else {
-      console.log('Data inserted successfully');
-      req.login(user,(err) => {
-        if(err) throw err;
-        res.redirect('/myTodo');
-      })
+      if(results.length != 0) {
+        req.login(user, (err) => {
+          if(err) throw err;
+          res.redirect('/myTodo');
+        })
+      } else {
+        connection.query('INSERT INTO users (id, username, email, profileImage) VALUES ?', [data], (err, results, fields) => {
+          if(err) {
+            throw err;
+          } else {
+            console.log('Data inserted successfully');
+            req.login(user,(err) => {
+              if(err) throw err;
+              res.redirect('/myTodo');
+            })
+          }
+        })
+      }
     }
   })
 }

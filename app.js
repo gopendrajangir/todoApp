@@ -24,7 +24,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 passport.use(new FacebookStrategy({
     clientID: "2146968241988168",
     clientSecret: "8ee758090dbaf64a01de19670a93f0cb",
-    callbackURL: "https://powerful-dusk-81349.herokuapp.com/auth/facebook/callback"
+    callbackURL: "http://localhost:3000/auth/facebook/callback"
   }, (accessToken, refreshToken, profile, done) => {
       done(null, profile);
   }
